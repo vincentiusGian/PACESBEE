@@ -1,0 +1,10 @@
+streamlit
+ultralytics
+torch==2.3.0+cpu
+torchvision==0.18.0+cpu
+torchaudio==2.3.0+cpu
+opencv-python
+numpy
+Pillow
+gdown
+
