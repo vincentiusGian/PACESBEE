@@ -62,10 +62,18 @@ if uploaded_file is not None:
     font_scale = 1.5
     font_thickness = 3
 
+
+    frame_skip = 5
+    frame_idx = 0
+
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
             break
+        
+        frame_idx += 1
+        if frame_idx % frame_skip != 0:
+            continue
 
         results = model(frame)
         for r in results:
@@ -148,11 +156,11 @@ if uploaded_file is not None:
         progress_bar.progress(progress)
         progress_text.text(f"Processing frame {current_frame}/{frame_count}")
 
-        time.sleep(0.02)
+        # time.sleep(0.02)
 
     cap.release()
     progress_bar.empty()
-    progress_text.text("✅ Video selesai diproses!")
+    progress_text.text("Video has been processed")
 
     # ===== Behavioral Event Evaluation (BEE) =====
     st.subheader("📊 Behavioral Event Evaluation (BEE) Results")
